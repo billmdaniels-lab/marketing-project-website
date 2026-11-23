@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Party City | Holiday Decor Rental Service</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-logo-slot">
+          <img
+            id="brand-logo"
+            class="brand-logo hidden"
+            alt="Party City Logo"
+          />
+          <span id="brand-fallback" class="brand-badge">Party City</span>
+        </div>
+        <span class="brand-sub">Holiday Rental &amp; Setup Service</span>
+      </div>
+      <span class="demo-tag">Interactive Presentation Mock-Up</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Progress Indicator -->
+    <nav class="stepper" aria-label="Order steps">
+      <div class="step active" data-step-indicator="1">
+        <span class="step-num">1</span>
+        <span class="step-label">Choose Package</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" data-step-indicator="2">
+        <span class="step-num">2</span>
+        <span class="step-label">Select Decorations</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" data-step-indicator="3">
+        <span class="step-num">3</span>
+        <span class="step-label">Order Summary</span>
+      </div>
+    </nav>
+
+    <!-- STEP 1: PACKAGE SELECTION -->
+    <section id="step-1" class="step-section active">
+      <div class="section-intro">
+        <h1>Stress-Free Christmas Decorating</h1>
+        <p>
+          Pick a rental package below. Every tier includes full delivery, professional
+          setup, and post-holiday takedown.
+        </p>
+      </div>
+
+      <div id="package-grid" class="package-grid">
+        <!-- Populated dynamically by js/main.js -->
+      </div>
+
+      <div id="step-1-error" class="alert-error hidden" role="alert"></div>
+
+      <div class="actions-bar actions-right">
+        <button id="btn-confirm-package" type="button" class="btn btn-primary" disabled>
+          Continue to Decorations &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 2: DECORATION SELECTION -->
+    <section id="step-2" class="step-section">
+      <div class="selected-pkg-banner">
+        <div>
+          <span class="banner-eyebrow">Selected Package</span>
+          <h2 id="banner-pkg-name">Package A</h2>
+        </div>
+        <div class="banner-price" id="banner-pkg-price">\$199</div>
+      </div>
+
+      <div class="section-intro">
+        <h1>Customize Your Decorations</h1>
+        <p>
+          Use the <strong>+</strong> and <strong>&minus;</strong> buttons to fill your package
+          slots, choose your lighting option, and pick your setup &amp; takedown dates.
+        </p>
+      </div>
+
+      <!-- Decoration Categories (Large, Medium, Small) -->
+      <div id="decoration-categories">
+        <!-- Populated dynamically by js/main.js -->
+      </div>
+
+      <!-- Lights Add-on Section -->
+      <div class="category-block">
+        <div class="category-header">
+          <div>
+            <h2>Lighting Options</h2>
+            <p class="category-subtitle">
+              All packages include [Lights Basic]. Select another option to add an upgrade.
+            </p>
+          </div>
+          <span class="counter-pill complete" id="lights-status-pill">Included Selected</span>
+        </div>
+        <div id="lights-grid" class="lights-grid">
+          <!-- Populated dynamically by js/main.js -->
+        </div>
+      </div>
+
+      <!-- Delivery, Setup & Takedown Date Picker Section -->
+      <div class="category-block">
+        <div class="category-header">
+          <div>
+            <h2>Delivery, Setup &amp; Takedown Dates</h2>
+            <p class="category-subtitle">
+              Choose when our team should install your decorations and return to pack everything up.
+            </p>
+          </div>
+          <span class="counter-pill" id="schedule-status-pill">Dates Needed</span>
+        </div>
+
+        <div class="schedule-grid">
+          <div class="form-field">
+            <label for="setup-date">Delivery &amp; Setup Date</label>
+            <input type="date" id="setup-date" name="setup-date" />
+            <span class="field-hint">Available mid-November through Dec 23</span>
+          </div>
+
+          <div class="form-field">
+            <label for="time-window">Preferred Arrival Window</label>
+            <select id="time-window" name="time-window">
+              <option value="Morning (9:00 AM - 12:00 PM)">Morning (9:00 AM &ndash; 12:00 PM)</option>
+              <option value="Afternoon (12:00 PM - 4:00 PM)">Afternoon (12:00 PM &ndash; 4:00 PM)</option>
+              <option value="Evening (4:00 PM - 7:00 PM)">Evening (4:00 PM &ndash; 7:00 PM)</option>
+            </select>
+            <span class="field-hint">Applies to both setup and takedown visits</span>
+          </div>
+
+          <div class="form-field">
+            <label for="takedown-date">Post-Holiday Takedown Date</label>
+            <input type="date" id="takedown-date" name="takedown-date" />
+            <span class="field-hint">Available Dec 26 through Jan 31</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-2-error" class="alert-error hidden" role="alert"></div>
+
+      <div class="actions-bar">
+        <button id="btn-back-to-packages" type="button" class="btn btn-secondary">
+          &larr; Change Package
+        </button>
+        <button id="btn-submit-choices" type="button" class="btn btn-primary">
+          Submit Choices &amp; View Summary &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 3: ORDER SUMMARY -->
+    <section id="step-3" class="step-section">
+      <div class="section-intro">
+        <h1>Your Holiday Rental Summary</h1>
+        <p>Review your package, selected decorations, lighting, and service dates below.</p>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-header">
+          <div>
+            <span class="banner-eyebrow">Package Chosen</span>
+            <h2 id="summary-pkg-name">Package A</h2>
+            <p id="summary-pkg-desc" class="muted-text"></p>
+          </div>
+          <div class="summary-price-tag" id="summary-pkg-price">\$199</div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="summary-section">
+          <h3>Selected Decorations</h3>
+          <div id="summary-decorations-list" class="summary-groups">
+            <!-- Populated dynamically by js/main.js -->
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="summary-section">
+          <h3>Lighting &amp; Service Details</h3>
+          <ul class="summary-line-items">
+            <li>
+              <span id="summary-lights-name">[Lights Basic]</span>
+              <strong id="summary-lights-price">Included</strong>
+            </li>
+            <li>
+              <span>Delivery &amp; Setup Date</span>
+              <strong id="summary-setup-date">Not selected</strong>
+            </li>
+            <li>
+              <span>Takedown &amp; Pickup Date</span>
+              <strong id="summary-takedown-date">Not selected</strong>
+            </li>
+            <li>
+              <span>Preferred Arrival Window</span>
+              <strong id="summary-time-window">Morning (9:00 AM &ndash; 12:00 PM)</strong>
+            </li>
+            <li>
+              <span>Delivery, Professional Setup &amp; Post-Season Takedown</span>
+              <strong class="included-text">Included</strong>
+            </li>
+          </ul>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="summary-total-row">
+          <span>Estimated Rental Total</span>
+          <span id="summary-total-price">\$199</span>
+        </div>
+      </div>
+
+      <div id="mock-confirmation" class="confirmation-banner hidden">
+        <h3>Mock Reservation Confirmed!</h3>
+        <p>
+          Thank you for testing the Party City Holiday Rental experience. No payment was
+          processed&mdash;this is a classroom presentation prototype.
+        </p>
+      </div>
+
+      <div class="actions-bar">
+        <button id="btn-edit-choices" type="button" class="btn btn-secondary">
+          &larr; Edit Decorations
+        </button>
+        <div class="actions-group">
+          <button id="btn-start-over" type="button" class="btn btn-outline">
+            Start Over
+          </button>
+          <button id="btn-mock-confirm" type="button" class="btn btn-success">
+            Confirm Mock Order
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Party City Holiday Rental Concept &bull; Marketing Class Project Prototype</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
